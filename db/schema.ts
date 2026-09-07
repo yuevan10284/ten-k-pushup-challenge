@@ -42,6 +42,7 @@ export const messages = pgTable(
     participantId: integer("participant_id").notNull().references(() => participants.id, { onDelete: "cascade" }),
     body: text("body").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+    editedAt: timestamp("edited_at", { withTimezone: true }),
   },
   (table) => [index("idx_messages_created").on(table.createdAt)]
 );
