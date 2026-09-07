@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ten-k-pushup-challenge.yuevan10284.chatgpt.site"),
+  metadataBase: new URL("https://ten-k-pushup-challenge.vercel.app"),
   title: "10K Pushup Challenge",
   description: "Track 10,000 pushups in 30 days and compete with your crew.",
   openGraph: {
