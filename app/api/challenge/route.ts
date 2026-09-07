@@ -17,7 +17,16 @@ export async function GET(request: Request) {
   if (participantId) {
     if (!pin) return json({ error: "PIN required." }, 400);
     const [person] = await db.select().from(participants).where(eq(participants.id, Number(participantId)));
-    if (!person || !person.claimed || !verifyPin(pin, person.pinHash)) return json({ error: "Wrong name or PIN." }, 401);
+    if (!person) return json({ error: "Wrong name or PIN." }, 401);
+    if (!person.claimed) {
+      // Migrated account: the browser already holds the PIN it used before
+      // migration (stored locally on join), so treat this automatic reload
+      // as the claim — no re-entry needed.
+      if (!/^\d{4}$/.test(pin)) return json({ error: "Wrong name or PIN." }, 401);
+      await db.update(participants).set({ pinHash: hashPin(pin), claimed: true }).where(eq(participants.id, person.id));
+    } else if (!verifyPin(pin, person.pinHash)) {
+      return json({ error: "Wrong name or PIN." }, 401);
+    }
     const logs = await db
       .select({ day: pushupLogs.day, count: pushupLogs.count })
       .from(pushupLogs)
