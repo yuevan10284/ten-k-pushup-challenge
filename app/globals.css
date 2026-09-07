@@ -241,8 +241,12 @@ button:focus-visible,a:focus-visible,select:focus-visible { outline:2px solid #c
 .day-tile:hover { transform:translateY(-2px); border-color:rgba(202,255,91,.35); background:rgba(183,255,60,.07); }
 .day-hit { color:#071007; border-color:rgba(211,255,123,.8); background:linear-gradient(145deg,#eaff8f,#a8ff2f); box-shadow:inset 0 1px 0 #fff,0 0 20px rgba(168,255,47,.28); }
 .day-under { color:#ffb7a8; border-color:rgba(255,137,111,.3); background:rgba(255,137,111,.09); }
+.day-missed { color:rgba(255,183,168,.75); border:1px dashed rgba(255,137,111,.5); background:rgba(255,137,111,.04); }
 .leader-row { background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.04); }
 .leader-me { background:linear-gradient(100deg,rgba(179,255,58,.1),rgba(149,255,62,.16)); border-color:rgba(181,255,60,.3); box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 26px rgba(154,255,35,.07); }
+.chat-bubble { background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.05); }
+.chat-list::-webkit-scrollbar { width:6px; }
+.chat-list::-webkit-scrollbar-thumb { background:rgba(255,255,255,.12); border-radius:999px; }
 .rank-one { color:#071007; background:linear-gradient(145deg,#e8ff85,#a9ff2e); box-shadow:0 0 18px rgba(168,255,47,.24); }
 .stat-card { transition:transform .2s ease,border-color .2s ease; }
 .stat-card:hover { transform:translateY(-2px); }
