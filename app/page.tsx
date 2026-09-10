@@ -36,6 +36,10 @@ export default function Home() {
   const total = logs.reduce((sum, log) => sum + log.count, 0);
   const logMap = useMemo(() => new Map(logs.map((log) => [log.day, log.count])), [logs]);
   const nextDay = BASE_TARGETS.findIndex((t,i)=>(logMap.get(i+1)??0)<t)+1 || 30;
+  // Keep the log form's day selector pointed at the next unlogged day as
+  // logs load in (and after each save advances it) — it was previously
+  // stuck at its useState(1) default regardless of actual progress.
+  useEffect(() => { setDay(nextDay); }, [nextDay]);
   const latestDay = logs.length ? Math.max(...logs.map((l) => l.day)) : 0;
   // Days already logged keep their original target; everything after
   // re-ramps around actual progress so the plan still lands on 10,000 —
